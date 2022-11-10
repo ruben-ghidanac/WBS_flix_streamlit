@@ -1,5 +1,5 @@
 import streamlit as st
-from functions import recommendations_for_specific_user_id
+from src.functions import recommendations_for_specific_user_id
 
 UserID = st.number_input("UserID",min_value=1, step=1)
 Top_n_movies = st.number_input("Top_n_movies",min_value=1, step=1)
