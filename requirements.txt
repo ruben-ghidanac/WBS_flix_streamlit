@@ -3,4 +3,4 @@ pandas
 numpy
 scikit-learn
 pip
-streamlit
+streamlit==1.14.0
