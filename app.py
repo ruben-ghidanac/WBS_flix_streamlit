@@ -1,7 +1,7 @@
 import streamlit as st
-import pandas as pd
-from src.functions import *
+from task2 import recommendations_for_specific_user_id
 
-UserID = st.number_input("UserID")
-Top_n_movies = st.number_input("Top_n_movies")
-st.write("The top", Top_n_movies, "movies recomandation:", recommendations_for_specific_user_id(UserID, Top_n_movies))
+UserID = st.number_input("UserID",min_value=1, step=1)
+Top_n_movies = st.number_input("Top_n_movies",min_value=1, step=1)
+
+st.write("We have", Top_n_movies, "movie/s recomandation for user:", UserID, recommendations_for_specific_user_id(UserID, Top_n_movies))
