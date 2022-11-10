@@ -12,7 +12,7 @@ movies = 'data/movies.csv'
 ratings = 'data/ratings.csv'
 tags = 'data/tags.csv'
 
-users_items = pd.pivot_table(data=ratings, values='rating', index='movieId', columns='userId')
+users_items = pd.pivot_table(data=ratings, values=['rating'], index=['movieId'], columns=['userId'])
 
 """## Movie Challenge:
 
