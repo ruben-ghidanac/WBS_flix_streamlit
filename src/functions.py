@@ -18,62 +18,10 @@ import seaborn as sns
 
 # Read the data
 
-url_links = "https://drive.google.com/file/d/1lFay3ImDdtXWAsmOyOl0q4WQfoVZShQD/view?usp=share_link"
-path_links = "https://drive.google.com/uc?export=download&id="+url_links.split("/")[-2]
-links = pd.read_csv(path_links)
-
-url_movies = "https://drive.google.com/file/d/1UXEccAh6JovPnLIG8VG5sm1nd7v8UNwW/view?usp=share_link"
-path_movies = "https://drive.google.com/uc?export=download&id="+url_movies.split("/")[-2]
-movies = pd.read_csv(path_movies)
-
-url_ratings = "https://drive.google.com/file/d/12AYRrLehtsT8juNVtt_ytn6oR8OVnYS2/view?usp=share_link"
-path_ratings = "https://drive.google.com/uc?export=download&id="+url_ratings.split("/")[-2]
-ratings = pd.read_csv(path_ratings)
-
-url_tags = "https://drive.google.com/file/d/1mV4n3WR4_J8NdAXGo1gI-I_ZcdWiZsTX/view?usp=share_link"
-path_tags = "https://drive.google.com/uc?export=download&id="+url_tags.split("/")[-2]
-tags = pd.read_csv(path_tags)
-
-"""## Exploring the data"""
-
-links.head(2)
-
-movies.head(2)
-
-ratings.head(2)
-
-tags.head(2)
-
-"""## Exercices from platform"""
-
-# exercice from platform
-import pandas as pd
-
-A = [1, 1, 1, 2, 2]
-movie_A = pd.Series(A, index = ["user_x", "user_y", "user_z", "user_i", "user_j"])
-
-B = [3, 4, 5, 4, 5]
-movie_B = pd.Series(B, index = ["user_x", "user_y", "user_z", "user_i", "user_j"])
-
-movie_A.corr(movie_B)
-
-# exercice from platform
-from pandas import DataFrame
-from sklearn.metrics.pairwise import cosine_similarity
-  
-df = DataFrame({
-'user_x': [1, 3, 2, 4],
-'user_y': [1, 4, 3, 4],
-'user_z': [1, 5, 5, 1] 
-},
-index=['movie_A', 'movie_B', 'movie_C', 'movie_D'])
-
-# exercice from platform
-from sklearn.metrics.pairwise import cosine_similarity
-cosine_similarity(df.T)
-
-# exercice from platform
-cosine_similarity(df)
+links = 'data/links.csv'
+movies = 'data/movies.csv'
+ratings = 'data/ratings.csv'
+tags = 'data/tags.csv'
 
 """## Movie Challenge 1:"""
 
@@ -81,7 +29,6 @@ movies_crosstab = pd.pivot_table(data=ratings, values='rating', index='userId', 
 
 movies_crosstab.sample()
 
-# I will change the approach, instead movies_id ...to be movies_name
 def similar_movies(movies_id, n):
     
   movie_ratings = movies_crosstab[movies_id]
@@ -100,8 +47,6 @@ def similar_movies(movies_id, n):
   top_n = similar_to_movie_id[similar_to_movie_id['rating_count']>=10].sort_values('PearsonR', ascending=False).head(n)
   return top_n
 
-similar_movies(10,3)
-
 """## Movie Challenge 2:
 
 Your task: create a function that takes the users userId, and a number (n) and outputs the n most recommended movies based on the cosine similarity of other users.
@@ -112,8 +57,6 @@ users_items = pd.pivot_table(data=ratings, values='rating', index='movieId', col
 users_items.head()
 
 # your code here
-
-
 
 def recommendations_for_specific_user_id(user_id, top_n_movies):
   
@@ -158,7 +101,3 @@ def show_seen_movies_for_specific_user_id(user_id):
   my_list.rename(columns = {0:'movieId'}, inplace = True)
   
   return my_list
-
-recommendations_for_specific_user_id(2, 5)
-
-show_seen_movies_for_specific_user_id(2)
