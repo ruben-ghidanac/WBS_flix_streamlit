@@ -14,5 +14,5 @@ st.write("We have", Top_n_movies, "movie/s recomandation for user:", UserID, rec
 """
 And if you are curious about what movies a particular user has seen already, you can see them below:
 """
-UserID2 = st.number_input("Please select your UserID",min_value=1, step=1)
-st.write("The user", UserID2, "has seen already this/these movie/s:", show_seen_movies_for_specific_user_id(UserID2))
+Userseen = st.number_input("Please select your UserID",min_value=1, step=1)
+st.write("The user", Userseen, "has seen already this/these movie/s:", show_seen_movies_for_specific_user_id(Userseen))
