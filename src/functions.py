@@ -7,10 +7,15 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 # Read the data
 
-links = 'data/links.csv'
-movies = 'data/movies.csv'
-ratings = 'data/ratings.csv'
-tags = 'data/tags.csv'
+path_links = 'data/links.csv'
+path_movies = 'data/movies.csv'
+path_ratings = 'data/ratings.csv'
+path_tags = 'data/tags.csv'
+
+links = pd.read_csv(path_links)
+movies = pd.read_csv(path_movies)
+ratings = pd.read_csv(path_ratings)
+tags = pd.read_csv(path_tags)
 
 users_items = pd.pivot_table(data=ratings, values=['rating'], index=['movieId'], columns=['userId'])
 
