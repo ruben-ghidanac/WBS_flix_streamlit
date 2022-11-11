@@ -43,7 +43,7 @@ def recommendations_for_specific_user_id(user_id, top_n_movies):
   not_seen_movies = users_items.loc[users_items.index!=user_id, users_items.loc[user_id,:]==0]
   not_seen_movies.T
 
-  # dot product between the not-visited-restaurants and the weights
+  # dot product between the not-seen-movies and the weights
   weighted_averages = pd.DataFrame(not_seen_movies.T.dot(weights), columns=["predicted_rating"])
 
   # find the top 'n' movies from the rating predictions
