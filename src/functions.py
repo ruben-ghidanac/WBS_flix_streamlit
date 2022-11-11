@@ -46,14 +46,13 @@ def recommendations_for_specific_user_id(user_id, top_n_movies):
   not_seen_movies = users_items.loc[users_items.index!=user_id, users_items.loc[user_id,:]==0]
   not_seen_movies.T
 
-  # dot product between the not-visited-restaurants and the weights
+  # dot product between the not-seen movies and the weights
   weighted_averages = pd.DataFrame(not_seen_movies.T.dot(weights), columns=["Score recommendation"])
   
   # scale features
   scaler = MinMaxScaler(feature_range=(0, 10), copy=False)
   model=scaler.fit(weighted_averages)
   scaled_data=model.transform(weighted_averages)
-  #weighted_averages = weighted_averages.round(2)
 
   # find the top 'n' movies from the rating predictions
   recommendations = weighted_averages.merge(movies, left_index=True, right_on="movieId")
