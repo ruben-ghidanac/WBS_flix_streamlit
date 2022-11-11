@@ -64,21 +64,3 @@ def recommendations_for_specific_user_id(user_id, top_n_movies):
   top_n = top_n.style.hide_index()
 
   return top_n
-
-
-def show_seen_movies_for_specific_user_id(user_id):
-  
-  users_items_with_names = users_items.merge(movies, left_index=True, right_on="movieId")
-
-  my_list = []
-
-  for i in users_items_with_names.index:
-    if users_items_with_names[user_id][i]>0:
-      my_list.append(i)
-
-  my_list = pd.DataFrame(my_list)
-  my_list = my_list.merge(movies, left_index=True, right_on="movieId")
-  my_list = my_list.drop(['movieId'], axis=1)
-  my_list.rename(columns = {0:'movieId'}, inplace = True)
-  
-  return my_list
