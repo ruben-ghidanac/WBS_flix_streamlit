@@ -17,9 +17,9 @@ movies = pd.read_csv(path_movies)
 ratings = pd.read_csv(path_ratings)
 tags = pd.read_csv(path_tags)
 
-users_items = pd.pivot_table(data=ratings, values=['rating'], index=['movieId'], columns=['userId'])
+users_items = pd.pivot_table(data=ratings, values='rating', index='movieId', columns='userId')
 
-"""## Movie Challenge:
+"""## Movie Challenge 2:
 
 Your task: create a function that takes the users userId, and a number (n) and outputs the n most recommended movies based on the cosine similarity of other users.
 """
@@ -51,6 +51,7 @@ def recommendations_for_specific_user_id(user_id, top_n_movies):
   top_n = recommendations.sort_values("predicted_rating", ascending=False).head(top_n_movies)
   
   return top_n
+
 
 def show_seen_movies_for_specific_user_id(user_id):
   
